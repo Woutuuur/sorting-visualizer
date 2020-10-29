@@ -3,7 +3,7 @@ Visualize various sorting algorithms. Written in C++ using SDL2.
 
 ![]()
 
-Implemented sorting algorithms:
+Implemented sorting algorithms:  
 - Quick sort
 - Merge sort
 - Insertion sort
