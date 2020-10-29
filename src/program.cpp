@@ -80,9 +80,11 @@ void Program::update()
     // Remove highlighting from all elements
     for (int i = 0; i < currVec.size(); i++)
         currVec.at(i).second = 0;
+    // Run the appropiate sorting algorithm
     if (currentAlgorithm == BUBBLE)
     {
         bubbleSort(currVec, *this, BUBBLESORT_DELAY);
+        reset();
     }
     if (currentAlgorithm == MERGE)
     {
@@ -126,7 +128,7 @@ void Program::handleEvents()
                 break;
             // Mouse button is pressed
             case SDL_MOUSEBUTTONUP:
-                // Check if the mouse is currently on any buttons
+                // Check if the mouse is currently on any buttons (means the button is pressed)
                 if (bubbleSortButton->mouseHover())
                     currentAlgorithm = BUBBLE;
                 if (selectionSortButton->mouseHover())
@@ -152,6 +154,7 @@ void Program::generateNewValues()
 
 void Program::reset()
 {
+    // After completing a sorting algorithm, return to default state
     currentAlgorithm = NONE;
     generateNewValues();
 }

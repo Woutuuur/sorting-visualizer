@@ -30,7 +30,6 @@ void bubbleSort(std::vector<std::pair<int, int>> &vec, Program &program, const i
             }
         }
     }
-    program.reset();
 }
 
 #endif

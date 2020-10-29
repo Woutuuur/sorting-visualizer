@@ -66,6 +66,7 @@ void Button::renderText() const
     SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
     int textW, textH;
     TTF_SizeText(font, text.c_str(), &textW, &textH);
+    // Centers text in middle of button
     SDL_Rect textRect = {buttonRect->x + (buttonRect->w - textW) / 2, buttonRect->y + (buttonRect->h - textH) / 2, textW, textH};
     SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
     SDL_FreeSurface(textSurface);
