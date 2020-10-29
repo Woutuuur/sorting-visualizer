@@ -11,7 +11,7 @@
 #define BUTTON_HEIGHT 200
 #define AMOUNT_OF_BARS 200
 
-#define BUBBLESORT_DELAY 5
+#define BUBBLESORT_DELAY 2
 #define MERGESORT_DELAY 25
 #define QUICKSORT_DELAY 25
 
@@ -143,15 +143,30 @@ void Program::handleEvents()
             case SDL_MOUSEBUTTONUP:
                 // Check if the mouse is currently on any buttons (means the button is pressed)
                 if (bubbleSortButton->mouseHover())
+                {
                     currentAlgorithm = BUBBLE;
+                    SDL_SetWindowTitle(window, "Bubble sort - Sorting visualizer");
+                }
                 if (selectionSortButton->mouseHover())
+                {
                     currentAlgorithm = SELECTION;
+                    SDL_SetWindowTitle(window, "Selection sort - Sorting visualizer");
+                }
                 if (insertionSortButton->mouseHover())
+                {
                     currentAlgorithm = INSERTION;
+                    SDL_SetWindowTitle(window, "Insertion sort - Sorting visualizer");
+                }
                 if (mergeSortButton->mouseHover())
+                {
                     currentAlgorithm = MERGE;
+                    SDL_SetWindowTitle(window, "Merge sort - Sorting visualizer");
+                }
                 if (quickSortButton->mouseHover())
+                {
                     currentAlgorithm = QUICK;
+                    SDL_SetWindowTitle(window, "Quick sort - Sorting visualizer");
+                }
                 break;
             default:
                 break;
@@ -172,6 +187,7 @@ void Program::reset()
     // After completing a sorting algorithm, return to default state
     currentAlgorithm = NONE;
     generateNewValues();
+    SDL_SetWindowTitle(window, "Sorting visualizer");
 }
 
 void Program::sortingHelper(int delay, std::vector<int> toHighlight)
