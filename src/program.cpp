@@ -6,12 +6,14 @@
 
 #include "bubblesort.h"
 #include "mergesort.h"
+#include "quicksort.h"
 
-#define BUTTON_WIDTH 300
 #define BUTTON_HEIGHT 200
 #define AMOUNT_OF_BARS 200
-#define BUBBLESORT_DELAY 10
+
+#define BUBBLESORT_DELAY 5
 #define MERGESORT_DELAY 25
+#define QUICKSORT_DELAY 25
 
 
 Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fullscreen)
@@ -27,17 +29,22 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
 
     // Start screen button initialization
 
-    bubbleSortButton = new Button(renderer, w/4.0f * 0, h/2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+    const int n = 5;
+
+    bubbleSortButton = new Button(renderer, w/n * 0, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
     bubbleSortButton->setText("Bubble sort", 24);
 
-    selectionSortButton = new Button(renderer, w/4.0f * 1, h/2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+    selectionSortButton = new Button(renderer, w/n * 1, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
     selectionSortButton->setText("Selection sort", 24);
 
-    insertionSortButton = new Button(renderer, w/4.0f * 2, h/2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+    insertionSortButton = new Button(renderer, w/n * 2, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
     insertionSortButton->setText("Insertion sort", 24);
 
-    mergeSortButton = new Button(renderer, w/4.0f * 3, h/2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT);
+    mergeSortButton = new Button(renderer, w/n * 3, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
     mergeSortButton->setText("Merge sort", 24);
+
+    quickSortButton = new Button(renderer, w/n * 4, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
+    quickSortButton->setText("Quick sort", 24);
 
     this->w = w;
     this->h = h;
@@ -69,6 +76,7 @@ void Program::render()
         selectionSortButton->render();
         insertionSortButton->render();
         mergeSortButton->render();
+        quickSortButton->render();
     }
     else
         renderVectorBars();
@@ -89,6 +97,11 @@ void Program::update()
     if (currentAlgorithm == MERGE)
     {
         mergeSort(currVec, *this, MERGESORT_DELAY, 0, currVec.size() - 1);
+        reset();
+    }
+    if (currentAlgorithm == QUICK)
+    {
+        quickSort(currVec, *this, QUICKSORT_DELAY, 0, currVec.size() - 1);
         reset();
     }
 }
@@ -137,6 +150,8 @@ void Program::handleEvents()
                     currentAlgorithm = INSERTION;
                 if (mergeSortButton->mouseHover())
                     currentAlgorithm = MERGE;
+                if (quickSortButton->mouseHover())
+                    currentAlgorithm = QUICK;
                 break;
             default:
                 break;
@@ -157,4 +172,21 @@ void Program::reset()
     // After completing a sorting algorithm, return to default state
     currentAlgorithm = NONE;
     generateNewValues();
+}
+
+void Program::sortingHelper(int delay, std::vector<int> toHighlight)
+{
+    // Get rid of any previous highlighting
+    for (int i = 0; i < currVec.size(); i++)
+        currVec.at(i).second = 0;
+    // Highlight the correct elements in the vector
+    for (int i = 0; i < toHighlight.size(); i++)
+        currVec.at(toHighlight.at(i)).second = 1;
+    handleEvents();
+    // Don't render and don't put delay if the program should stop running
+    if (!running())
+        return;
+    // Render the bars (now with the correct highlighting applied)
+    render();
+    SDL_Delay(delay);
 }

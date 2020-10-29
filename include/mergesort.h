@@ -3,24 +3,7 @@
 
 #include "program.h"
 
-int helper(Program &program, std::vector<std::pair<int, int>> &vec, int delay, std::vector<int> toHighlight)
-{
-    // Get rid of any previous highlighting
-    for (int i = 0; i < vec.size(); i++)
-        vec.at(i).second = 0;
-
-    for (int i = 0; i < toHighlight.size(); i++)
-        vec.at(toHighlight.at(i)).second = 1;
-    toHighlight.clear();
-    program.handleEvents();
-    if (!program.running())
-            return 1;
-    program.render();
-    SDL_Delay(delay);
-    return 0;
-}
-
-void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int delay,  int begin, int mid, int end)
+void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int delay, int begin, int mid, int end)
 {
     int len1 = mid - begin + 1;
     int len2 = end - mid;
@@ -53,7 +36,7 @@ void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int de
             toHighlight.push_back(mid + j + 1);
             j++;
         }
-        helper(program, vec, delay, toHighlight);
+        program.sortingHelper(delay, toHighlight);
         k++;
     }
     while (i < len1)
@@ -62,7 +45,7 @@ void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int de
         toHighlight.push_back(begin + i);
         i++;
         k++;
-        helper(program, vec, delay, toHighlight);
+        program.sortingHelper(delay, toHighlight);
     }
     while (j < len2)
     {
@@ -70,7 +53,7 @@ void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int de
         toHighlight.push_back(mid + j + 1);
         j++;
         k++;
-        helper(program, vec, delay, toHighlight);
+        program.sortingHelper(delay, toHighlight);
     }
 }
 

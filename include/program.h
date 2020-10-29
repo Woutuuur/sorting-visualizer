@@ -7,7 +7,7 @@
 #include <stack>
 #include "button.h"
 
-enum algorithm {NONE, BUBBLE, INSERTION, SELECTION, MERGE};
+enum algorithm {NONE, BUBBLE, INSERTION, SELECTION, MERGE, QUICK};
 
 class Program
 {
@@ -22,6 +22,7 @@ class Program
 
         void renderVectorBars() const;
         void setCurrentAlgorihtm (algorithm algorithm) {this->currentAlgorithm = algorithm;}
+        void sortingHelper(int delay, std::vector<int> toHighlight);
         
         bool running() const {return isRunning;}
         void reset();
@@ -35,12 +36,12 @@ class Program
         Button* insertionSortButton;
         Button* selectionSortButton;
         Button* mergeSortButton;
+        Button* quickSortButton;
 
         std::vector<int> vec;
         std::vector<std::pair<int, int>> currVec;
 
         int w, h;
-        
         void generateNewValues();
 };
 
