@@ -3,7 +3,7 @@
 
 #include "program.h"
 
-void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int delay, int begin, int mid, int end)
+void merge(std::vector<std::pair<int, int>> &vec, Program &program, int begin, int mid, int end)
 {
     int len1 = mid - begin + 1;
     int len2 = end - mid;
@@ -36,7 +36,7 @@ void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int de
             toHighlight.push_back(mid + j + 1);
             j++;
         }
-        program.sortingHelper(delay, toHighlight);
+        program.sortingHelper(MERGESORT_DELAY, toHighlight);
         k++;
     }
     while (i < len1)
@@ -45,7 +45,7 @@ void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int de
         toHighlight.push_back(begin + i);
         i++;
         k++;
-        program.sortingHelper(delay, toHighlight);
+        program.sortingHelper(MERGESORT_DELAY, toHighlight);
     }
     while (j < len2)
     {
@@ -53,20 +53,20 @@ void merge(std::vector<std::pair<int, int>> &vec, Program &program, const int de
         toHighlight.push_back(mid + j + 1);
         j++;
         k++;
-        program.sortingHelper(delay, toHighlight);
+        program.sortingHelper(MERGESORT_DELAY, toHighlight);
     }
 }
 
-void mergeSort(std::vector<std::pair<int, int>> &vec, Program &program, const int delay, int left, int right)
+void mergeSort(std::vector<std::pair<int, int>> &vec, Program &program, int left, int right)
 {
     if (left < right)
     {
         int mid = left + (right - left) / 2;
 
-        mergeSort(vec, program, delay, left, mid);
-        mergeSort(vec, program, delay, mid + 1, right);
+        mergeSort(vec, program, left, mid);
+        mergeSort(vec, program, mid + 1, right);
 
-        merge(vec, program, delay, left, mid, right);
+        merge(vec, program, left, mid, right);
     }
 }
 

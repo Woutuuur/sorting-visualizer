@@ -7,6 +7,14 @@
 #include <stack>
 #include "button.h"
 
+#define BUBBLESORT_DELAY 2
+#define MERGESORT_DELAY 25
+#define QUICKSORT_DELAY 25
+#define INSERTIONSORT_DELAY 2
+
+#define BUTTON_HEIGHT 200
+#define AMOUNT_OF_BARS 200
+
 enum algorithm {NONE, BUBBLE, INSERTION, SELECTION, MERGE, QUICK};
 
 class Program

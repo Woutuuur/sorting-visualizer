@@ -9,15 +9,6 @@
 #include "quicksort.h"
 #include "insertionsort.h"
 
-#define BUTTON_HEIGHT 200
-#define AMOUNT_OF_BARS 200
-
-#define BUBBLESORT_DELAY 2
-#define MERGESORT_DELAY 25
-#define QUICKSORT_DELAY 25
-#define INSERTIONSORT_DELAY 2
-
-
 Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fullscreen)
 {
     // Intialize SDL components
@@ -97,22 +88,22 @@ void Program::update()
     // Run the appropiate sorting algorithm
     if (currentAlgorithm == BUBBLE)
     {
-        bubbleSort(currVec, *this, BUBBLESORT_DELAY);
+        bubbleSort(currVec, *this);
         reset();
     }
     if (currentAlgorithm == MERGE)
     {
-        mergeSort(currVec, *this, MERGESORT_DELAY, 0, currVec.size() - 1);
+        mergeSort(currVec, *this, 0, currVec.size() - 1);
         reset();
     }
     if (currentAlgorithm == QUICK)
     {
-        quickSort(currVec, *this, QUICKSORT_DELAY, 0, currVec.size() - 1);
+        quickSort(currVec, *this, 0, currVec.size() - 1);
         reset();
     }
     if (currentAlgorithm == INSERTION)
     {
-        insertionSort(currVec, *this, INSERTIONSORT_DELAY);
+        insertionSort(currVec, *this);
         reset();
     }
 }

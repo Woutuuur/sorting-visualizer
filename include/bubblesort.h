@@ -5,7 +5,7 @@
 #include <utility>
 #include "program.h"
 
-void bubbleSort(std::vector<std::pair<int, int>> &vec, Program &program, const int delay)
+void bubbleSort(std::vector<std::pair<int, int>> &vec, Program &program)
 {
     for (int i = 0; i < vec.size(); i++)
     {
@@ -13,7 +13,7 @@ void bubbleSort(std::vector<std::pair<int, int>> &vec, Program &program, const i
         {
             if (vec.at(j).first > vec.at(j + 1).first)
             {
-                program.sortingHelper(delay, {j, j+1});
+                program.sortingHelper(BUBBLESORT_DELAY, {j, j+1});
                 std::swap(vec.at(j), vec.at(j + 1));
             }
         }
