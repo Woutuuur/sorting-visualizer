@@ -51,12 +51,16 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
 
     // Sets the seed for the random number generator
     srand(time(NULL));
-
     generateNewValues();
 }
 
 Program::~Program()
 {
+    delete bubbleSortButton;
+    delete selectionSortButton;
+    delete insertionSortButton;
+    delete mergeSortButton;
+    delete quickSortButton;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();
