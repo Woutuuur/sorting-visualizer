@@ -8,6 +8,7 @@
 #include "mergesort.h"
 #include "quicksort.h"
 #include "insertionsort.h"
+#include "selectionsort.h"
 
 Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fullscreen)
 {
@@ -104,6 +105,11 @@ void Program::update()
     if (currentAlgorithm == INSERTION)
     {
         insertionSort(currVec, *this);
+        reset();
+    }
+    if (currentAlgorithm == SELECTION)
+    {
+        selectionSort(currVec, *this);
         reset();
     }
 }
