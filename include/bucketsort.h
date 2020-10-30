@@ -27,7 +27,6 @@ void bucketSort(std::vector<std::pair<int, int>> &vec, Program &program)
         // Visualize the element that is being put in a bucket
         program.sortingHelper(BUCKETSORT_DELAY, {i});
     }
-
     
     for (int i = 0; i < buckets.size(); i++)
     {
@@ -52,7 +51,6 @@ void bucketSort(std::vector<std::pair<int, int>> &vec, Program &program)
             vec.at(k++).first = buckets.at(i).at(j);
         }
     }
-        
 }
 
 #endif
