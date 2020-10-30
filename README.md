@@ -1,7 +1,8 @@
 # Sorting algorithm visualizer
 Visualize various sorting algorithms. Written in C++ using SDL2.
 
-![]()
+![](ex.gif)
+Example of the program visualizing *merge sort*.
 
 Implemented sorting algorithms:  
 - Quick sort
