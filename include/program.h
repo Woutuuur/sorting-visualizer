@@ -49,7 +49,6 @@ class Program
         Button* quickSortButton;
         Button* bucketSortButton;
 
-        std::vector<int> vec;
         std::vector<std::pair<int, int>> currVec;
 
         int w, h;

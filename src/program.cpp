@@ -23,7 +23,6 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
     if (TTF_Init() != 0) throw std::runtime_error("Could not initialize TTF.");
 
     // Start screen button initialization
-
     const int n = 6;
 
     bubbleSortButton = new Button(renderer, w/n * 0, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
@@ -84,6 +83,7 @@ void Program::render()
     }
     else
         renderVectorBars();
+
     SDL_RenderPresent(renderer);
 }
 
