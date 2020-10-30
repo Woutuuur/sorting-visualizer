@@ -4,7 +4,7 @@ Visualize various sorting algorithms. Written in C++ using SDL2.
 ![](ex.gif)
 Example of the program visualizing *merge sort*.
 
-Implemented sorting algorithms:  
+The following sorting algorithms are currently implemented:  
 - Quick sort
 - Merge sort
 - Bucket sort
