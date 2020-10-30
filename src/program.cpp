@@ -59,6 +59,7 @@ Program::~Program()
     delete insertionSortButton;
     delete mergeSortButton;
     delete quickSortButton;
+    delete bucketSortButton;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();
