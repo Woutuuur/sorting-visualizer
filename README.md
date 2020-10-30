@@ -6,6 +6,7 @@ Visualize various sorting algorithms. Written in C++ using SDL2.
 Implemented sorting algorithms:  
 - Quick sort
 - Merge sort
+- Bucket sort
 - Insertion sort
 - Selection sort
 - Bubble sort

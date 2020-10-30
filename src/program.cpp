@@ -9,6 +9,7 @@
 #include "quicksort.h"
 #include "insertionsort.h"
 #include "selectionsort.h"
+#include "bucketsort.h"
 
 Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fullscreen)
 {
@@ -23,7 +24,7 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
 
     // Start screen button initialization
 
-    const int n = 5;
+    const int n = 6;
 
     bubbleSortButton = new Button(renderer, w/n * 0, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
     bubbleSortButton->setText("Bubble sort", 24);
@@ -39,6 +40,9 @@ Program::Program(const char* title, int xpos, int ypos, int w, int h, bool fulls
 
     quickSortButton = new Button(renderer, w/n * 4, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
     quickSortButton->setText("Quick sort", 24);
+
+    bucketSortButton = new Button(renderer, w/n * 5, h/2 - BUTTON_HEIGHT / 2, w/n, BUTTON_HEIGHT);
+    bucketSortButton->setText("Bucket sort", 24);
 
     this->w = w;
     this->h = h;
@@ -75,6 +79,7 @@ void Program::render()
         insertionSortButton->render();
         mergeSortButton->render();
         quickSortButton->render();
+        bucketSortButton->render();
     }
     else
         renderVectorBars();
@@ -110,6 +115,11 @@ void Program::update()
     if (currentAlgorithm == SELECTION)
     {
         selectionSort(currVec, *this);
+        reset();
+    }
+    if (currentAlgorithm == BUCKET)
+    {
+        bucketSort(currVec, *this);
         reset();
     }
 }
@@ -174,6 +184,11 @@ void Program::handleEvents()
                 {
                     currentAlgorithm = QUICK;
                     SDL_SetWindowTitle(window, "Quick sort - Sorting visualizer");
+                }
+                if (bucketSortButton->mouseHover())
+                {
+                    currentAlgorithm = BUCKET;
+                    SDL_SetWindowTitle(window, "Bucket sort - Sorting visualizer");                   
                 }
                 break;
             default:

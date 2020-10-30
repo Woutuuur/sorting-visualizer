@@ -10,13 +10,14 @@
 #define BUBBLESORT_DELAY 2
 #define INSERTIONSORT_DELAY 2
 #define SELECTIONSORT_DELAY 2
+#define BUCKETSORT_DELAY 25
 #define MERGESORT_DELAY 25
 #define QUICKSORT_DELAY 25
 
 #define BUTTON_HEIGHT 200
 #define AMOUNT_OF_BARS 200
 
-enum algorithm {NONE, BUBBLE, INSERTION, SELECTION, MERGE, QUICK};
+enum algorithm {NONE, BUBBLE, INSERTION, SELECTION, MERGE, QUICK, BUCKET};
 
 class Program
 {
@@ -46,6 +47,7 @@ class Program
         Button* selectionSortButton;
         Button* mergeSortButton;
         Button* quickSortButton;
+        Button* bucketSortButton;
 
         std::vector<int> vec;
         std::vector<std::pair<int, int>> currVec;
