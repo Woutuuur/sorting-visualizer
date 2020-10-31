@@ -20,4 +20,21 @@ void insertionSort(std::vector<std::pair<int, int>> &vec, Program &program)
     }
 }
 
+void insertionSort(std::vector<int> &vec, Program &program)
+{
+    int key, j;
+    for (int i = 1; i < vec.size(); i++)
+    {
+        j = i;
+        key = vec.at(i);
+        while (j > 0 && vec.at(j - 1) > key)
+        {
+            vec.at(j) = vec.at(j - 1);
+            program.sortingHelper(INSERTIONSORT_DELAY, {j, j - 1});
+            j--;
+        }
+        vec.at(j) = key;
+    }
+}
+
 #endif
